@@ -15,16 +15,12 @@ function processData(myObj) {
     console.log(myObj);
     $('<link rel="stylesheet" href="https://guidedlearning.oracle.com/player/latest/static/css/stTip.css" type="text/css" />').appendTo('head');
     $('<style type="text/css"> ' + myObj.data.css + '</style>').appendTo('head');
-    // let obj =createElementFromHTML('<div  class="sttip">   	<div class="tooltip in"> <div class="tooltip-arrow"></div><div class="tooltip-arrow second-arrow"></div><div class="popover-inner"><div class=el'+1+'> '+myObj.data.tiplates.tip+'</div></div></div></div>');
-    //document.getElementById('hplogo').after(obj);
-    // $('.popover-content [data-iridize-id="content"]').html(myObj.data.structure.steps[0].action.contents["#content"]);
-
 
     for (i = 0; i < 5; i++) {
         let obj =createElementFromHTML('<div  class="sttip">   	<div class="tooltip in"> <div class="tooltip-arrow"></div><div class="tooltip-arrow second-arrow"></div><div class="popover-inner"><div class=el'+i+'> '+myObj.data.tiplates.tip+'</div></div></div></div>');
         $(myObj.data.structure.steps[i].action.selector).after(obj);
         $('.el'+i+' .popover-content [data-iridize-id="content"]').html(myObj.data.structure.steps[i].action.contents["#content"]);
-
+        $("[class='tooltip in']").removeClass('tooltip in').addClass("tooltip in "+myObj.data.structure.steps[i].action.placement+" "+myObj.data.structure.steps[i].action.classes);
     }
 
 }
